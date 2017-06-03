@@ -1,0 +1,23 @@
+.login-container {
+	margin-top: 2.5rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+md-card {
+	max-width: 25rem;
+	margin: 0 auto;
+}
+
+md-card-title h2 {
+	text-align: center;
+	font-size: 2.5em;
+	font-weight: 300;
+}
+
+md-input-container {
+	width: 100%;
+	margin-bottom: 2rem;
+}

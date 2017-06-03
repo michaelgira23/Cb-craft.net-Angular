@@ -1,3 +1,33 @@
-<p>
-	login works!
-</p>
+<div class="login-container">
+	<md-card>
+		<md-card-header>
+			<md-card-title>
+				<h2>Login</h2>
+			</md-card-title>
+		</md-card-header>
+		<md-card-content>
+			<form id="login-form" [formGroup]="loginForm" (submit)="login()" novalidate>
+				<md-input-container>
+					<input mdInput placeholder="Username" formControlName="username">
+					<md-hint>
+						Use your normal Minecraft email or username.
+					</md-hint>
+				</md-input-container>
+				<md-input-container>
+					<input mdInput placeholder="Password" type="password" formControlName="password">
+				</md-input-container>
+				<md-slide-toggle formControlName="remember">Remember</md-slide-toggle>
+			</form>
+		</md-card-content>
+		<md-card-actions>
+			<button
+				md-button
+				md-raised-button
+				color="primary"
+				form="login-form"
+				[disabled]="!loginForm.valid">
+				Login
+			</button>
+		</md-card-actions>
+	</md-card>
+</div>

@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { routing } from './routes';
@@ -25,7 +26,8 @@ import { SocketService } from './socket.service';
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		MdButtonModule,
+		ReactiveFormsModule,
+		MaterialModule,
 		routing
 	],
 	providers: [

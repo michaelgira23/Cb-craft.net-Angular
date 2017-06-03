@@ -12,11 +12,17 @@ export class SocketService {
 		this.socket = socketCluster.connect({
 			hostname: environment.socketCluster.hostname,
 			secure: environment.socketCluster.secure,
-			port: environment.socketCluster.port,
-			// autoReconnect: true
+			port: environment.socketCluster.port
 		});
-		console.log('socket cluster', socketCluster);
-		console.log('socket', this.socket);
+
+		this.socket.on('connect', status => {
+			console.log('Connected!');
+			if (status.authenticated) {
+				console.log('We are authenticated!');
+			} else {
+				console.log('We are NOT authenticated!');
+			}
+		});
 	}
 
 }
