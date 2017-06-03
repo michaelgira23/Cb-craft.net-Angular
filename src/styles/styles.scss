@@ -1,0 +1,6 @@
+/* Material Design Theme */
+@import './theme';
+
+// Go through components passing MD theme
+@import '../app/shared/navbar/navbar-theme';
+@include nav-bar-theme($theme);
