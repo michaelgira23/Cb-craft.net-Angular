@@ -12,6 +12,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SearchComponent } from './pages/search/search.component';
 
+import { SocketService } from './socket.service';
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -26,7 +28,9 @@ import { SearchComponent } from './pages/search/search.component';
 		MdButtonModule,
 		routing
 	],
-	providers: [],
+	providers: [
+		SocketService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
