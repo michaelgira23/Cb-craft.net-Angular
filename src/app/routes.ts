@@ -1,7 +1,9 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SearchComponent } from './pages/search/search.component';
 
 const appRoutes: Routes = [
 	{
@@ -10,8 +12,16 @@ const appRoutes: Routes = [
 		pathMatch: 'full'
 	},
 	{
+		path: 'login',
+		component: LoginComponent
+	},
+	{
 		path: 'dashboard',
 		component: DashboardComponent
+	},
+	{
+		path: 'search',
+		component: SearchComponent
 	},
 	{
 		path: '**',

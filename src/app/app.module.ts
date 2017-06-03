@@ -8,13 +8,17 @@ import { routing } from './routes';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SearchComponent } from './pages/search/search.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		NavbarComponent,
-		DashboardComponent
+		LoginComponent,
+		DashboardComponent,
+		SearchComponent
 	],
 	imports: [
 		BrowserModule,
