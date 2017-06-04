@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { SocketService } from '../../socket.service';
 
 @Component({
 	selector: 'app-login',
@@ -8,20 +11,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+	submitting = false;
+	error = null;
 	loginForm: FormGroup;
 
-	constructor(private fb: FormBuilder) { }
+	constructor(private fb: FormBuilder, private router: Router, private socketService: SocketService) { }
 
 	ngOnInit() {
 		this.loginForm = this.fb.group({
-			username: ['', Validators.required],
-			password: ['', Validators.required],
-			remember: true
+			ign: ['', Validators.required],
+			password: ['', Validators.required]
 		});
 	}
 
 	login() {
-		console.log('Submit login form', this.loginForm.value);
+		this.submitting = true;
+		this.socketService.emit('login', this.loginForm.value, err => {
+			this.submitting = false;
+			if (err) {
+				this.error = err;
+			} else {
+				this.router.navigate(['/dashboard']);
+			}
+		});
 	}
 
 }

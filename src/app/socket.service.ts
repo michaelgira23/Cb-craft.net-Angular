@@ -25,4 +25,8 @@ export class SocketService {
 		});
 	}
 
+	emit(...data) {
+		this.socket.emit(...data);
+	}
+
 }

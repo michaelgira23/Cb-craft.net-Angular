@@ -8,15 +8,15 @@
 		<md-card-content>
 			<form id="login-form" [formGroup]="loginForm" (submit)="login()" novalidate>
 				<md-input-container>
-					<input mdInput placeholder="Username" formControlName="username">
+					<input mdInput placeholder="Username" formControlName="ign">
 					<md-hint>
-						Use your normal Minecraft email or username.
+						Use your normal in-game Minecraft username.
 					</md-hint>
 				</md-input-container>
 				<md-input-container>
 					<input mdInput placeholder="Password" type="password" formControlName="password">
 				</md-input-container>
-				<md-slide-toggle formControlName="remember">Remember</md-slide-toggle>
+				<md-error *ngIf="error">{{ error }}</md-error>
 			</form>
 		</md-card-content>
 		<md-card-actions>
@@ -25,7 +25,7 @@
 				md-raised-button
 				color="primary"
 				form="login-form"
-				[disabled]="!loginForm.valid">
+				[disabled]="!loginForm.valid || submitting">
 				Login
 			</button>
 		</md-card-actions>
