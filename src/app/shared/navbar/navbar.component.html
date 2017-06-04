@@ -18,9 +18,19 @@
 		</a>
 	</div>
 	<div class="nav-right">
-		<a md-button routerLink="/login">
+		<a *ngIf="!jwt" md-button routerLink="/login">
 			<i class="material-icons">person</i>
 			Login
 		</a>
+		<ng-container *ngIf="jwt">
+			<a md-button>
+				<i class="material-icons">person</i>
+				Logged in as {{ jwt.ign }}
+			</a>
+			<a md-button routerLink="/logout">
+				<i class="material-icons">person</i>
+				Logout
+			</a>
+		</ng-container>
 	</div>
 </nav>

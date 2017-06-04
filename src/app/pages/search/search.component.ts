@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SocketService } from '../../socket.service';
-
 @Component({
 	selector: 'app-search',
 	templateUrl: './search.component.html',
@@ -9,7 +7,7 @@ import { SocketService } from '../../socket.service';
 })
 export class SearchComponent implements OnInit {
 
-	constructor(private socketService: SocketService) { }
+	constructor() { }
 
 	ngOnInit() {
 	}

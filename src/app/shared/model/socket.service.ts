@@ -1,4 +1,4 @@
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 
 import { Injectable } from '@angular/core';
 import socketCluster from 'socketcluster-client';
@@ -17,16 +17,20 @@ export class SocketService {
 
 		this.socket.on('connect', status => {
 			console.log('Connected!');
-			if (status.authenticated) {
-				console.log('We are authenticated!');
+			if (status.isAuthenticated) {
+				console.log('We are authenticated!', this.socket.authToken);
 			} else {
 				console.log('We are NOT authenticated!');
 			}
 		});
 	}
 
-	emit(...data) {
-		this.socket.emit(...data);
+	emit(eventName: string, data?: any, callback?: (any) => void) {
+		this.socket.emit(eventName, data, callback);
+	}
+
+	on(eventName: string, callback: (any) => void) {
+		this.socket.on(eventName, callback);
 	}
 
 }

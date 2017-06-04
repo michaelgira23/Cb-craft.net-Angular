@@ -13,7 +13,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SearchComponent } from './pages/search/search.component';
 
-import { SocketService } from './socket.service';
+import { AuthService } from './shared/model/auth.service';
+import { SocketService } from './shared/model/socket.service';
 
 @NgModule({
 	declarations: [
@@ -31,8 +32,9 @@ import { SocketService } from './socket.service';
 		routing
 	],
 	providers: [
+		AuthService,
 		SocketService
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [ AppComponent ]
 })
 export class AppModule { }
