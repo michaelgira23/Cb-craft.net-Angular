@@ -24,7 +24,24 @@ export class AuthService {
 				if (err) {
 					observer.error(err);
 				} else {
-					observer.next(err);
+					observer.next();
+					setTimeout(() => {
+						this.$auth.next(this.socketService.socket.authToken);
+					}, 0);
+				}
+				observer.complete();
+			});
+		});
+	}
+
+	logout() {
+		return Observable.create(observer => {
+			this.socketService.socket.deauthenticate(err => {
+				if (err) {
+					observer.error(err);
+				} else {
+					this.$auth.next(null);
+					observer.next();
 				}
 				observer.complete();
 			});
@@ -39,5 +56,8 @@ export interface Credentials {
 }
 
 export interface JWT {
-	[key: string]: string;
+	ign: string;
+	scopes: string[];
+	iat: number;
+	exp: number;
 }

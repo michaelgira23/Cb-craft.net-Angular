@@ -24,11 +24,9 @@
 		</a>
 		<ng-container *ngIf="jwt">
 			<a md-button>
-				<i class="material-icons">person</i>
 				Logged in as {{ jwt.ign }}
 			</a>
-			<a md-button routerLink="/logout">
-				<i class="material-icons">person</i>
+			<a md-button (click)="logout()">
 				Logout
 			</a>
 		</ng-container>
