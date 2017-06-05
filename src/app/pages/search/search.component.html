@@ -2,12 +2,22 @@
 	<md-sidenav class="mat-elevation-z6" mode="side" opened="true">
 		<h1>Search</h1>
 		<div class="search-filter">
-			<md-checkbox>Vanilla</md-checkbox>
-			<md-checkbox>Technic</md-checkbox>
-			<md-checkbox>ATLauncher</md-checkbox>
+			<md-select placeholder="Minecraft Origin" [(ngModel)]="origin">
+				<md-option value="vanilla">Vanilla</md-option>
+				<md-option value="technic">Technic</md-option>
+				<md-option value="atlauncher">ATLauncher</md-option>
+			</md-select>
 		</div>
 	</md-sidenav>
 	<div class="search-content">
-		Main content
+		<div class="search-bar">
+			<md-input-container floatPlaceholder="never">
+				<input mdInput [(ngModel)]="searchString" placeholder="Type in a Minecraft version or modpack">
+				<md-icon mdSuffix>search</md-icon>
+			</md-input-container>
+		</div>
+		<div class="search-results">
+
+		</div>
 	</div>
 </md-sidenav-container>

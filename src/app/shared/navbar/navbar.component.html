@@ -5,21 +5,21 @@
 	</a>
 	<div class="nav-links">
 		<a md-button routerLink="/dashboard">
-			<i class="material-icons">dashboard</i>
+			<md-icon>dashboard</md-icon>
 			Dashboard
 		</a>
 		<a md-button routerLink="/servers">
-			<i class="material-icons">dns</i>
+			<md-icon>dns</md-icon>
 			Servers
 		</a>
 		<a md-button routerLink="/search">
-			<i class="material-icons">search</i>
+			<md-icon>search</md-icon>
 			Search
 		</a>
 	</div>
 	<div class="nav-right">
 		<a *ngIf="!jwt" md-button routerLink="/login">
-			<i class="material-icons">person</i>
+			<md-icon>person</md-icon>
 			Login
 		</a>
 		<ng-container *ngIf="jwt">

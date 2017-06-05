@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as fuse from 'fuse.js';
 
 @Component({
 	selector: 'app-search',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
+	searchString = '';
+	origin = 'vanilla';
+
 	constructor() { }
 
 	ngOnInit() {
+		console.log(fuse);
 	}
 
 }

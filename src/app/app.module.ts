@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
@@ -27,6 +27,7 @@ import { SocketService } from './shared/model/socket.service';
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
+		FormsModule,
 		ReactiveFormsModule,
 		MaterialModule,
 		routing
