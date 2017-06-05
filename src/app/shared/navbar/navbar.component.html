@@ -1,4 +1,4 @@
-<nav class="mat-elevation-z6">
+<nav>
 	<a md-button class="nav-logo" routerLink="/">
 		<img src="/assets/server-icon.png">
 		Cbcraft
@@ -24,6 +24,7 @@
 		</a>
 		<ng-container *ngIf="jwt">
 			<a md-button>
+				<img [src]="'https://crafatar.com/avatars/' + jwt.ign + '?overlay'">
 				Logged in as {{ jwt.ign }}
 			</a>
 			<a md-button (click)="logout()">

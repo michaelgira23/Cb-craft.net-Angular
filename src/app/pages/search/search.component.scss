@@ -1,0 +1,21 @@
+md-sidenav-container, .search-content {
+	width: 100%;
+	height: 100%;
+}
+
+md-sidenav {
+	min-width: 15rem;
+	padding: 1rem;
+
+	h1 {
+		margin-top: 0;
+		font-size: 2.5em;
+		font-weight: 300;
+	}
+
+	.search-filter {
+		md-checkbox {
+			display: block;
+		}
+	}
+}
