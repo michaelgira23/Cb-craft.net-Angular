@@ -14,6 +14,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SearchComponent } from './pages/search/search.component';
 
 import { AuthService } from './shared/model/auth.service';
+import { SearchService } from './shared/model/search.service';
 import { SocketService } from './shared/model/socket.service';
 
 @NgModule({
@@ -34,6 +35,7 @@ import { SocketService } from './shared/model/socket.service';
 	],
 	providers: [
 		AuthService,
+		SearchService,
 		SocketService
 	],
 	bootstrap: [ AppComponent ]

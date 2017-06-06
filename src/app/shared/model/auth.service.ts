@@ -9,29 +9,24 @@ export class AuthService {
 	$auth: BehaviorSubject<JWT> = new BehaviorSubject(null);
 
 	constructor(private socketService: SocketService) {
-		this.socketService.on('connect', status => {
-			if (status.isAuthenticated) {
-				this.$auth.next(this.socketService.socket.authToken);
-			} else {
-				this.$auth.next(null);
+		this.socketService.on('connect')
+			.subscribe(({ data }) => {
+				if (data.isAuthenticated) {
+					this.$auth.next(this.socketService.socket.authToken);
+				} else {
+					this.$auth.next(null);
+				}
 			}
-		});
+		);
 	}
 
 	login(credentials: Credentials) {
-		return Observable.create(observer => {
-			this.socketService.emit('login', credentials, err => {
-				if (err) {
-					observer.error(err);
-				} else {
-					observer.next();
-					setTimeout(() => {
-						this.$auth.next(this.socketService.socket.authToken);
-					}, 0);
-				}
-				observer.complete();
+		return this.socketService.emit('login', credentials)
+			.do(() => {
+				setTimeout(() => {
+					this.$auth.next(this.socketService.socket.authToken);
+				}, 0);
 			});
-		});
 	}
 
 	logout() {

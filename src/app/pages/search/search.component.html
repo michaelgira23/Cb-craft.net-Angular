@@ -12,12 +12,15 @@
 	<div class="search-content">
 		<div class="search-bar">
 			<md-input-container floatPlaceholder="never">
-				<input mdInput [(ngModel)]="searchString" placeholder="Type in a Minecraft version or modpack">
+				<input mdInput [(ngModel)]="queryString" (keyup)="search()" placeholder="Type in a Minecraft version or modpack">
 				<md-icon mdSuffix>search</md-icon>
 			</md-input-container>
 		</div>
-		<div class="search-results">
+		<md-list class="search-results">
+			<md-list-item *ngFor="let result of results">
+				{{ result.name }}
+			</md-list-item>
+		</md-list>
 
-		</div>
 	</div>
 </md-sidenav-container>

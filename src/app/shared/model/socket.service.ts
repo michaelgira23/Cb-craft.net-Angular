@@ -1,6 +1,7 @@
 import { environment } from '../../../environments/environment';
 
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 import socketCluster from 'socketcluster-client';
 
 @Injectable()
@@ -25,12 +26,25 @@ export class SocketService {
 		});
 	}
 
-	emit(eventName: string, data?: any, callback?: (any) => void) {
-		this.socket.emit(eventName, data, callback);
+	emit(eventName: string, data?: any) {
+		return Observable.create(observer => {
+			this.socket.emit(eventName, data, (err, res) => {
+				if (err) {
+					observer.error(err);
+				} else {
+					observer.next(res);
+				}
+				observer.complete();
+			});
+		});
 	}
 
-	on(eventName: string, callback: (any) => void) {
-		this.socket.on(eventName, callback);
+	on(eventName: string) {
+		return Observable.create(observer => {
+			this.socket.on(eventName, (data, res) => {
+				observer.next({ data, res });
+			});
+		});
 	}
 
 }
