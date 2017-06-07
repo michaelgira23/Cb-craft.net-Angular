@@ -9,12 +9,12 @@ import { SocketService } from './socket.service';
 export class SearchService {
 
 	vanillaCache: Pack[];
+	atlCache: Pack[];
 
 
 	constructor(private socketService: SocketService) { }
 
 	search(query: Query): Observable<Pack[]> {
-		console.log('search', query);
 		switch (query.origin) {
 			case 'vanilla':
 				return this.searchVanilla(query.string);
@@ -55,7 +55,26 @@ export class SearchService {
 	}
 
 	searchATLauncher(query: string) {
-		return Observable.of([]);
+		// If no cache, query Minecraft versions
+		let source;
+		if (this.atlCache) {
+			source = Observable.of(this.atlCache);
+		} else {
+			source = this.socketService.emit('search', { origin: 'atlauncher', query })
+				.do(packs => {
+					this.atlCache = packs
+				});
+		}
+
+		return source
+			.switchMap(packs => {
+				// If no query, just return packs without fuzzy search
+				if (query.length === 0) {
+					return Observable.of(packs);
+				} else {
+					return this.fuzzy(query, packs)
+				}
+			});
 	}
 
 	fuzzy(query: string, list: Pack[]) {
