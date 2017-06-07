@@ -17,10 +17,22 @@
 			</md-input-container>
 		</div>
 		<md-list class="search-results">
-			<md-list-item *ngFor="let result of results">
-				{{ result.name }}
-			</md-list-item>
+			<ng-container *ngFor="let result of results; let i = index">
+				<md-divider *ngIf="i !== 0"></md-divider>
+				<md-list-item class="pack">
+					<h3 md-line>{{ result.name }}</h3>
+					<md-chip-list md-line>
+						<md-chip *ngFor="let tag of result.tags" [color]="tagColorMap[tag] || tagColorMap.default">{{ tag }}</md-chip>
+					</md-chip-list>
+					<button md-raised-button color="accent">
+						<md-icon>file_download</md-icon>
+						<span>Download</span>
+					</button>
+				</md-list-item>
+			</ng-container>
 		</md-list>
-
+		<a *ngIf="results.length === 0" md-button class="no-results" disabled>
+			Nothing here to display!
+		</a>
 	</div>
 </md-sidenav-container>

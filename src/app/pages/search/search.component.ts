@@ -18,6 +18,14 @@ export class SearchComponent implements OnInit, OnDestroy {
 	searchSubject: Subject<Query>;
 	searchSubscription: Subscription;
 
+	tagColorMap: { [tag: string]: string } = {
+		vanilla: 'primary',
+		modpack: 'primary',
+		technic: 'accent',
+		atlauncher: 'accent',
+		default: 'warn'
+	};
+
 	constructor(private searchService: SearchService) { }
 
 	ngOnInit() {

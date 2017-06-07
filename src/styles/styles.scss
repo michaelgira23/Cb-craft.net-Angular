@@ -12,3 +12,11 @@ html, body {
 body {
 	font-family: 'Roboto', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 }
+
+app-search md-list-item .mat-list-item-content {
+	justify-content: space-between;
+
+	.mat-list-text {
+		width: initial !important;
+	}
+}
