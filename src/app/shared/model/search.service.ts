@@ -34,14 +34,14 @@ export class SearchService {
 			source = Observable.of(this.vanillaCache);
 		} else {
 			source = this.socketService.emit('search', { origin: 'vanilla', query })
-					.first()
-					.do(packs => {
-						this.vanillaCache = packs
-					});
+				.do(packs => {
+					this.vanillaCache = packs
+				});
 		}
 
 		return source
 			.switchMap(packs => {
+				// If no query, just return packs without fuzzy search
 				if (query.length === 0) {
 					return Observable.of(packs);
 				} else {
@@ -51,7 +51,7 @@ export class SearchService {
 	}
 
 	searchTechnic(query: string) {
-		return Observable.of([]);
+		return this.socketService.emit('search', { origin: 'technic', query });
 	}
 
 	searchATLauncher(query: string) {

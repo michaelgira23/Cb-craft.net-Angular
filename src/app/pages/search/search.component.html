@@ -2,7 +2,7 @@
 	<md-sidenav class="mat-elevation-z6" mode="side" opened="true">
 		<h1>Search</h1>
 		<div class="search-filter">
-			<md-select placeholder="Minecraft Origin" [(ngModel)]="origin">
+			<md-select placeholder="Minecraft Origin" [(ngModel)]="origin" (change)="search()">
 				<md-option value="vanilla">Vanilla</md-option>
 				<md-option value="technic">Technic</md-option>
 				<md-option value="atlauncher">ATLauncher</md-option>

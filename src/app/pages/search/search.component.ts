@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subject, Subscription } from 'rxjs/Rx';
+import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
 import { Pack } from '../../shared/model/pack';
 import { SearchService, Query } from '../../shared/model/search.service';
@@ -25,7 +25,13 @@ export class SearchComponent implements OnInit, OnDestroy {
 		this.searchSubscription = this.searchSubject
 			.distinctUntilChanged((a, b) => (a.origin === b.origin && a.string === b.string))
 			.debounceTime(100)
-			.switchMap(query => this.searchService.search(query))
+			.flatMap(
+				query => this.searchService.search(query)
+					.catch(err => {
+						/** @todo Display error message or something */
+						return Observable.of([]);
+					})
+			)
 			.subscribe(
 				results => {
 					console.log('Search Results', results);
