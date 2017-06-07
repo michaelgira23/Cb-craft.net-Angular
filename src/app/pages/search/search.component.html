@@ -7,6 +7,8 @@
 				<md-option value="technic">Technic</md-option>
 				<md-option value="atlauncher">ATLauncher</md-option>
 			</md-select>
+			<h3>Filter Tags</h3>
+			<md-checkbox *ngFor="let tag of tags" [(ngModel)]="tagFilter[tag]">{{ tag }} ({{ tagCount[tag] }})</md-checkbox>
 		</div>
 	</md-sidenav>
 	<div class="search-content">
