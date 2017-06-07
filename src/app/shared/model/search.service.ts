@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import * as fuse from 'fuse.js';
+import * as Fuse from 'fuse.js';
 import { Pack } from './pack';
 
 import { SocketService } from './socket.service';
@@ -28,31 +28,26 @@ export class SearchService {
 	}
 
 	searchVanilla(query: string) {
-		// const base = Observable.of();
-		//
-		// // If we don't have cache yet, get list of vanilla versions
-		// console.log('vanila cache', this.vanillaCache);
-		// if (!this.vanillaCache) {
-		// 	console.log('concat');
-		// 	base.map(
-		// 		() => this.socketService.emit('search', query)
-		// 	)
-		// 	.map(packs => {
-		// 		console.log('get vanilla packs', packs);
-		// 		this.vanillaCache = packs;
-		// 	});
-		// }
-		//
-		// base.concat(() => {
-		// 	console.log('return cache', this.vanillaCache);
-		// 	return this.vanillaCache;
-		// });
-		//
-		// // base.map();
+		// If no cache, query Minecraft versions
+		let source;
+		if (this.vanillaCache) {
+			source = Observable.of(this.vanillaCache);
+		} else {
+			source = this.socketService.emit('search', { origin: 'vanilla', query })
+					.first()
+					.do(packs => {
+						this.vanillaCache = packs
+					});
+		}
 
-		// return Observable.of([]);
-
-		return this.socketService.emit('search', query);
+		return source
+			.switchMap(packs => {
+				if (query.length === 0) {
+					return Observable.of(packs);
+				} else {
+					return this.fuzzy(query, packs)
+				}
+			});
 	}
 
 	searchTechnic(query: string) {
@@ -63,8 +58,24 @@ export class SearchService {
 		return Observable.of([]);
 	}
 
-	fuzzy() {
-
+	fuzzy(query: string, list: Pack[]) {
+		return Observable.create(observer => {
+			const fuse = new Fuse(list, {
+				shouldSort: true,
+				threshold: 0.6,
+				location: 0,
+				distance: 100,
+				maxPatternLength: 32,
+				minMatchCharLength: 1,
+				keys: [
+					'id',
+					'name',
+					'tags'
+				]
+			});
+			observer.next(fuse.search(query));
+			observer.complete();
+		});
 	}
 
 }
