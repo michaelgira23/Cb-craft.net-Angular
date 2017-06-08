@@ -33,7 +33,7 @@ export class SearchService {
 		if (this.vanillaCache) {
 			source = Observable.of(this.vanillaCache);
 		} else {
-			source = this.socketService.emit('search', { origin: 'vanilla', query })
+			source = this.socketService.emit('jars.search', { origin: 'vanilla', query })
 				.do(packs => {
 					this.vanillaCache = packs
 				});
@@ -51,7 +51,7 @@ export class SearchService {
 	}
 
 	searchTechnic(query: string) {
-		return this.socketService.emit('search', { origin: 'technic', query });
+		return this.socketService.emit('jars.search', { origin: 'technic', query });
 	}
 
 	searchATLauncher(query: string) {
@@ -60,7 +60,7 @@ export class SearchService {
 		if (this.atlCache) {
 			source = Observable.of(this.atlCache);
 		} else {
-			source = this.socketService.emit('search', { origin: 'atlauncher', query })
+			source = this.socketService.emit('jars.search', { origin: 'atlauncher', query })
 				.do(packs => {
 					this.atlCache = packs
 				});

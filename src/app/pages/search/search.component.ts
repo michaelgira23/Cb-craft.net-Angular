@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs/Rx';
 
 import { Pack } from '../../shared/model/pack';
+import { DownloadService } from '../../shared/model/download.service';
 import { SearchService, Query } from '../../shared/model/search.service';
 
 @Component({
@@ -34,7 +35,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 		default: 'warn'
 	};
 
-	constructor(private searchService: SearchService) { }
+	constructor(private downloadService: DownloadService, private searchService: SearchService) { }
 
 	ngOnInit() {
 		this.searchSubject = new Subject();
@@ -63,12 +64,19 @@ export class SearchComponent implements OnInit, OnDestroy {
 				return this._tagFilter[name];
 			},
 			set: (target, property, value, receiver) => {
-				console.log('set new value!');
 				this._tagFilter[property] = value;
 				this.updateFilterTags();
 				return true;
 			}
 		});
+
+		// Get download status
+		this.downloadService.currentDownloads
+			.subscribe(
+				downloads => {
+					console.log('Downloads change', downloads);
+				}
+			);
 	}
 
 	ngOnDestroy() {
@@ -113,16 +121,28 @@ export class SearchComponent implements OnInit, OnDestroy {
 		this.results = [];
 		for (const pack of this.unfilteredResults) {
 			if (this.filterPack(pack)) {
-				console.log('back is okay');
 				this.results.push(pack);
-			} else {
-				console.log('back is not okay');
 			}
 		}
 	}
 
 	filterPack(pack: Pack) {
 		return pack.tags.every(tag => this.tagFilter[tag]);
+	}
+
+	download(origin: string, id: string) {
+		this.downloadService.download(origin, id)
+			.subscribe(
+				progress => {
+					console.log('Download Next:', progress);
+				},
+				err => {
+					console.log('Download Error:', err);
+				},
+				() => {
+					console.log('Download Complete!');
+				}
+			);
 	}
 
 }

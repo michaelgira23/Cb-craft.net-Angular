@@ -47,4 +47,27 @@ export class SocketService {
 		});
 	}
 
+	subscribe(channelName: string) {
+		return Observable.create(observer => {
+
+			const watchHandler = data => {
+				observer.next(data);
+			}
+
+			const channel = this.socket.subscribe(channelName);
+			channel.watch(watchHandler);
+
+			return () => {
+				channel.unwatch(watchHandler);
+				const channelWatchers = channel.watchers();
+
+				// If no other watchers, destroy channel
+				if (channelWatchers.length < 1) {
+					channel.unsubscribe();
+					channel.destroy();
+				}
+			};
+		});
+	}
+
 }

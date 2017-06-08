@@ -14,6 +14,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SearchComponent } from './pages/search/search.component';
 
 import { AuthService } from './shared/model/auth.service';
+import { DownloadService } from './shared/model/download.service';
 import { SearchService } from './shared/model/search.service';
 import { SocketService } from './shared/model/socket.service';
 
@@ -35,6 +36,7 @@ import { SocketService } from './shared/model/socket.service';
 	],
 	providers: [
 		AuthService,
+		DownloadService,
 		SearchService,
 		SocketService
 	],
