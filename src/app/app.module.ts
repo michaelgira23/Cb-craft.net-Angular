@@ -12,6 +12,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SearchComponent } from './pages/search/search.component';
+import { ServerComponent } from './pages/server/server.component';
 
 import { AuthService } from './shared/model/auth.service';
 import { DownloadService } from './shared/model/download.service';
@@ -24,7 +25,8 @@ import { SocketService } from './shared/model/socket.service';
 		NavbarComponent,
 		LoginComponent,
 		DashboardComponent,
-		SearchComponent
+		SearchComponent,
+		ServerComponent
 	],
 	imports: [
 		BrowserModule,

@@ -1,0 +1,51 @@
+<div class="server-container">
+		<md-card>
+			<md-card-header>
+				<md-card-title>Controls</md-card-title>
+				<md-card-subtitle><md-icon>cloud_done</md-icon>Online</md-card-subtitle>
+			</md-card-header>
+		</md-card>
+		<md-card>
+			<md-card-header>
+				<md-card-title>Playas</md-card-title>
+				<md-card-subtitle><strong>16 / 420</strong> players online</md-card-subtitle>
+			</md-card-header>
+			<md-card-content>
+				<md-list>
+					<md-list-item *ngFor="let player of onlinePlayers">
+						<img md-list-avatar [src]="'https://crafatar.com/avatars/' + player.ign + '?overlay'">
+						<h3 md-line>{{ player.ign }}</h3>
+						<md-chip-list md-line>
+							<md-chip *ngIf="player.isOp" color="primary">Op</md-chip>
+						</md-chip-list>
+						<button md-icon-button [mdMenuTriggerFor]="playerMenu">
+							<md-icon>more_vert</md-icon>
+						</button>
+						<md-menu #playerMenu="mdMenu">
+							<button md-menu-item *ngIf="!player.isOp">
+								<md-icon>arrow_upward</md-icon>
+								<span>Op</span>
+							</button>
+							<button md-menu-item *ngIf="player.isOp">
+								<md-icon>arrow_downward</md-icon>
+								<span>De-Op</span>
+							</button>
+							<button md-menu-item>
+								<md-icon>remove_circle</md-icon>
+								<span>Kick</span>
+							</button>
+							<button md-menu-item>
+								<md-icon>texture</md-icon>
+								<span>Ban</span>
+							</button>
+							<button md-menu-item>
+								<md-icon>accessibility</md-icon>
+								<span>Kill</span>
+							</button>
+						</md-menu>
+					</md-list-item>
+				</md-list>
+
+			</md-card-content>
+		</md-card>
+</div>

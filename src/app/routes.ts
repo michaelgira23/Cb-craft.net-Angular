@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SearchComponent } from './pages/search/search.component';
+import { ServerComponent } from './pages/server/server.component';
 
 const appRoutes: Routes = [
 	{
@@ -22,6 +23,10 @@ const appRoutes: Routes = [
 	{
 		path: 'search',
 		component: SearchComponent
+	},
+	{
+		path: 'server',
+		component: ServerComponent
 	},
 	{
 		path: '**',
