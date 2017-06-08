@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import Clipboard from 'clipboard';
 
 @Component({
 	selector: 'app-server',
 	templateUrl: './server.component.html',
 	styleUrls: ['./server.component.scss']
 })
-export class ServerComponent implements OnInit {
+export class ServerComponent implements OnInit, OnDestroy {
 
 	onlinePlayers = [
 		{
@@ -30,9 +31,29 @@ export class ServerComponent implements OnInit {
 		}
 	];
 
+	ip = 'mc.cb-craft.net';
+	@ViewChild('ipCopy', { read: ElementRef }) ipCopy: ElementRef;
+	ipClipboard: Clipboard;
+
 	constructor() { }
 
 	ngOnInit() {
+		console.log('elemen', this.ipCopy);
+		this.ipClipboard = new Clipboard(this.ipCopy.nativeElement, {
+			text: () => this.ip
+		});
+
+		this.ipClipboard.on('success', event => {
+			console.log('Success!', event);
+		});
+
+		this.ipClipboard.on('error', event => {
+			console.log('Fail!', event);
+		});
+	}
+
+	ngOnDestroy() {
+		this.ipClipboard.destroy();
 	}
 
 }

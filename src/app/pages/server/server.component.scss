@@ -7,3 +7,25 @@
 	grid-template-columns: repeat(2, 1fr);
 	grid-column-gap: 1rem;
 }
+
+md-card-title h3 {
+	margin: 0;
+	font-size: 2.5em;
+	font-weight: 300;
+}
+
+.card-controls {
+	md-card-subtitle {
+		display: flex;
+		align-items: flex-end;
+
+		span {
+			margin-left: 0.5rem;
+		}
+	}
+
+	.button-controls,
+	.button-misc {
+		margin-bottom: 0.25rem;
+	}
+}

@@ -1,13 +1,39 @@
 <div class="server-container">
-		<md-card>
+		<md-card class="card-controls">
 			<md-card-header>
-				<md-card-title>Controls</md-card-title>
-				<md-card-subtitle><md-icon>cloud_done</md-icon>Online</md-card-subtitle>
+				<md-card-title>
+					<h3>Controls</h3>
+				</md-card-title>
+				<md-card-subtitle>
+					<md-icon>cloud_done</md-icon>
+					<span>Online</span>
+				</md-card-subtitle>
 			</md-card-header>
+			<md-card-content>
+				<div class="button-controls">
+					<button md-raised-button color="accent" disabled>Start</button>
+					<button md-raised-button color="accent">Stop</button>
+					<button md-raised-button color="accent">Restart</button>
+				</div>
+				<div class="button-misc">
+					<button md-raised-button color="primary">Console</button>
+				</div>
+				<div class="ip">
+					<md-input-container>
+						<input mdInput [value]="ip">
+					</md-input-container>
+					<button #ipCopy md-button>
+						<md-icon>content_copy</md-icon>
+						Copy
+					</button>
+				</div>
+			</md-card-content>
 		</md-card>
-		<md-card>
+		<md-card class="card-players">
 			<md-card-header>
-				<md-card-title>Playas</md-card-title>
+				<md-card-title>
+					<h3>Players</h3>
+				</md-card-title>
 				<md-card-subtitle><strong>16 / 420</strong> players online</md-card-subtitle>
 			</md-card-header>
 			<md-card-content>
@@ -16,12 +42,16 @@
 						<img md-list-avatar [src]="'https://crafatar.com/avatars/' + player.ign + '?overlay'">
 						<h3 md-line>{{ player.ign }}</h3>
 						<md-chip-list md-line>
-							<md-chip *ngIf="player.isOp" color="primary">Op</md-chip>
+							<md-chip *ngIf="player.isOp" selected="true" color="primary">Op</md-chip>
 						</md-chip-list>
 						<button md-icon-button [mdMenuTriggerFor]="playerMenu">
 							<md-icon>more_vert</md-icon>
 						</button>
 						<md-menu #playerMenu="mdMenu">
+							<button md-menu-item>
+								<md-icon>accessibility</md-icon>
+								<span>Kill</span>
+							</button>
 							<button md-menu-item *ngIf="!player.isOp">
 								<md-icon>arrow_upward</md-icon>
 								<span>Op</span>
@@ -37,10 +67,6 @@
 							<button md-menu-item>
 								<md-icon>texture</md-icon>
 								<span>Ban</span>
-							</button>
-							<button md-menu-item>
-								<md-icon>accessibility</md-icon>
-								<span>Kill</span>
 							</button>
 						</md-menu>
 					</md-list-item>
