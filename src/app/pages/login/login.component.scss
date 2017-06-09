@@ -11,13 +11,10 @@ md-card {
 	margin: 0 auto;
 }
 
-md-card-title h3 {
-	margin: 0;
-	font-size: 2.5em;
-	font-weight: 300;
-}
-
 md-input-container {
 	width: 100%;
-	margin-bottom: 2rem;
+
+	&:not(:last-child) {
+		margin-bottom: 2rem;
+	}
 }
