@@ -42,7 +42,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 		this.searchSubscription = this.searchSubject
 			.distinctUntilChanged((a, b) => (a.origin === b.origin && a.string === b.string))
 			.debounceTime(100)
-			.flatMap(
+			.switchMap(
 				query => this.searchService.search(query)
 					.catch(err => {
 						/** @todo Display error message or something */
@@ -74,7 +74,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 		this.downloadService.currentDownloads
 			.subscribe(
 				downloads => {
-					console.log('Downloads change', downloads);
+					// console.log('Downloads change', downloads);
 				}
 			);
 	}

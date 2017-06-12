@@ -16,29 +16,26 @@ export class DownloadService {
 		this.socketService.subscribe('jars.status')
 			.subscribe(
 				status => {
+					let alreadyExists = false;
 
-					console.log('Recieve new status', status);
-
-					let updated = false;
-					// for (const download of this.current) {
 					for (let i = 0; i < this.current.length; i++) {
 						const download = this.current[i];
 						if (download.origin === status.data.origin
 							&& download.id === status.data.id
 							&& download.version === status.data.version
 						) {
+							alreadyExists = true;
+
 							if (status.action === 'progress') {
 								download.progress = status.data.progress;
 							} else if (status.action === 'complete') {
 								this.current.splice(i--, 1);
 							}
-
-							updated = true;
 						}
 					}
 
-					if (!updated && status.action === 'progress') {
-						this.current.push(status);
+					if (!alreadyExists && status.action === 'progress') {
+						this.current.push(status.data);
 					}
 
 					// Emit behavior subject
@@ -48,7 +45,13 @@ export class DownloadService {
 	}
 
 	download(origin: string, id: string) {
-		return this.socketService.emit('jars.download', { origin, id });
+		return this.socketService.emit('jars.download', { origin, id })
+			.filter(() => false)
+			.concat(
+				this.socketService.subscribe('jars.status')
+			)
+			.takeWhile(status => status.action !== 'complete')
+			.map(status => status.data);
 	}
 
 }
