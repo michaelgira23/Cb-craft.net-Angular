@@ -1,0 +1,16 @@
+<div class="container">
+	<a md-raised-button color="accent" routerLink="/create">
+		<md-icon>add</md-icon>
+		Create Server
+	</a>
+	<a md-button disabled>2 servers max (0 left)</a>
+	<div class="servers">
+		<md-card *ngFor="let server of servers" class="server">
+			<md-card-title>Server Name</md-card-title>
+			<md-card-subtitle>4/20 players online</md-card-subtitle>
+			<md-card-actions>
+				<a md-raised-button color="primary" routerLink="/server">Manage</a>
+			</md-card-actions>
+		</md-card>
+	</div>
+</div>

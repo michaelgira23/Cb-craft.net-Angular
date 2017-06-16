@@ -9,10 +9,13 @@ import { routing } from './routes';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { LoginComponent } from './pages/login/login.component';
+
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CreateServerComponent } from './pages/create-server/create-server.component';
+import { LoginComponent } from './pages/login/login.component';
 import { SearchComponent } from './pages/search/search.component';
-import { ServerComponent } from './pages/server/server.component';
+import { ServerControlComponent } from './pages/server-control/server-control.component';
+import { ServerListComponent } from './pages/server-list/server-list.component';
 
 import { AuthService } from './shared/model/auth.service';
 import { DownloadService } from './shared/model/download.service';
@@ -23,10 +26,12 @@ import { SocketService } from './shared/model/socket.service';
 	declarations: [
 		AppComponent,
 		NavbarComponent,
-		LoginComponent,
 		DashboardComponent,
+		CreateServerComponent,
+		LoginComponent,
 		SearchComponent,
-		ServerComponent
+		ServerControlComponent,
+		ServerListComponent
 	],
 	imports: [
 		BrowserModule,

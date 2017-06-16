@@ -2,11 +2,11 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 import Clipboard from 'clipboard';
 
 @Component({
-	selector: 'app-server',
-	templateUrl: './server.component.html',
-	styleUrls: ['./server.component.scss']
+	selector: 'app-server-control',
+	templateUrl: './server-control.component.html',
+	styleUrls: ['./server-control.component.scss']
 })
-export class ServerComponent implements OnInit, OnDestroy {
+export class ServerControlComponent implements OnInit, OnDestroy {
 
 	onlinePlayers = [
 		{

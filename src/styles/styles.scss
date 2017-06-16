@@ -20,3 +20,9 @@ app-search md-list-item .mat-list-item-content {
 		width: initial !important;
 	}
 }
+
+.container {
+	width: 100% * (2 / 3);
+	margin: 0 auto 6rem;
+	padding-top: 2rem;
+}

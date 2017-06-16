@@ -1,10 +1,12 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CreateServerComponent } from './pages/create-server/create-server.component';
+import { LoginComponent } from './pages/login/login.component';
 import { SearchComponent } from './pages/search/search.component';
-import { ServerComponent } from './pages/server/server.component';
+import { ServerControlComponent } from './pages/server-control/server-control.component';
+import { ServerListComponent } from './pages/server-list/server-list.component';
 
 const appRoutes: Routes = [
 	{
@@ -13,20 +15,33 @@ const appRoutes: Routes = [
 		pathMatch: 'full'
 	},
 	{
-		path: 'login',
-		component: LoginComponent
-	},
-	{
 		path: 'dashboard',
 		component: DashboardComponent
+	},
+	{
+		path: 'create',
+		component: CreateServerComponent
+	},
+	{
+		path: 'login',
+		component: LoginComponent
 	},
 	{
 		path: 'search',
 		component: SearchComponent
 	},
 	{
+		path: 'servers',
+		component: ServerListComponent
+	},
+	{
 		path: 'server',
-		component: ServerComponent
+		children: [
+			{
+				path: '',
+				component: ServerControlComponent
+			}
+		]
 	},
 	{
 		path: '**',
