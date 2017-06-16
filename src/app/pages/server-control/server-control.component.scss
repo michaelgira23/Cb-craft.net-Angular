@@ -1,12 +1,18 @@
 .server-container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-column-gap: 1rem;
+	grid-gap: 1rem;
 }
 
-md-card-title h3 {
-	margin: 0;
-	font-weight: 300;
+md-card-title {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+
+	h3 {
+		margin: 0;
+		font-weight: 300;
+	}
 }
 
 .card-controls {
@@ -22,5 +28,23 @@ md-card-title h3 {
 	.button-controls,
 	.button-misc {
 		margin-bottom: 0.25rem;
+	}
+}
+
+.card-console {
+	grid-column: span 2;
+
+	.console-output {
+		white-space: pre-wrap;
+	}
+
+	.console-input {
+		display: flex;
+		align-items: center;
+
+		md-input-container {
+			width: 100%;
+			margin-right: 1rem;
+		}
 	}
 }

@@ -13,12 +13,16 @@ body {
 	font-family: 'Roboto', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 }
 
-app-search md-list-item .mat-list-item-content {
+app-search .mat-list-item-content {
 	justify-content: space-between;
 
 	.mat-list-text {
 		width: initial !important;
 	}
+}
+
+md-card-header.full-width-header > .mat-card-header-text {
+	width: 100%;
 }
 
 .container {

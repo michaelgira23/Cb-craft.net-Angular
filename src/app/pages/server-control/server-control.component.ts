@@ -38,22 +38,34 @@ export class ServerControlComponent implements OnInit, OnDestroy {
 	constructor() { }
 
 	ngOnInit() {
-		console.log('elemen', this.ipCopy);
 		this.ipClipboard = new Clipboard(this.ipCopy.nativeElement, {
 			text: () => this.ip
 		});
 
 		this.ipClipboard.on('success', event => {
-			console.log('Success!', event);
+			console.log('Copy Success!', event);
 		});
 
 		this.ipClipboard.on('error', event => {
-			console.log('Fail!', event);
+			console.log('Copy Fail!', event);
 		});
 	}
 
 	ngOnDestroy() {
 		this.ipClipboard.destroy();
+	}
+
+	sendCommand(inputElem: HTMLInputElement) {
+		const command = inputElem.value;
+
+		if (command.length < 1) {
+			return;
+		}
+
+		console.log('send command', command);
+
+		// Clear input upon successful completion
+		inputElem.value = '';
 	}
 
 }
