@@ -14,7 +14,7 @@
 	<div class="container">
 		<div class="search-bar">
 			<md-input-container floatPlaceholder="never">
-				<input mdInput [(ngModel)]="queryString" (keyup)="search()" placeholder="Type in a Minecraft version or modpack">
+				<input mdInput [(ngModel)]="queryString" (keyup)="search()" [placeholder]="origin === 'vanilla' ? 'Search for a Minecraft version' : 'Search for a modpack'">
 				<md-icon mdSuffix>search</md-icon>
 			</md-input-container>
 		</div>
@@ -27,8 +27,8 @@
 						<md-chip *ngFor="let tag of result.tags" [color]="tagColorMap[tag] || tagColorMap.default">{{ tag }}</md-chip>
 					</md-chip-list>
 					<button md-raised-button color="accent" (click)="download(result.origin, result.id)">
-						<md-icon>file_download</md-icon>
-						<span>Download</span>
+						<md-icon>create</md-icon>
+						Create Server
 					</button>
 				</md-list-item>
 			</ng-container>

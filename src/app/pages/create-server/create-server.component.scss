@@ -1,0 +1,50 @@
+.container {
+	text-align: center;
+
+	> * {
+		text-align: left;
+	}
+
+	h1 {
+		font-weight: 300;
+	}
+
+	.search-more {
+		margin-top: 2rem;
+	}
+}
+
+.favorites {
+	display: flex;
+	justify-content: space-between;
+
+	.favorite {
+		flex-basis: 0;
+		flex-grow: 1;
+
+		&:not(:last-child) {
+			margin-right: 1rem;
+		}
+
+		.image-container {
+			// Styles from Angular Material's md-card-image directive
+			width: calc(100% + 48px);
+			margin: 0 -24px 16px -24px;
+
+			.background {
+				width: 100%;
+			}
+
+			.logo {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+		}
+	}
+}

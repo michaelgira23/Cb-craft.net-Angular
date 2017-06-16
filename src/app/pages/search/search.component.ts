@@ -13,7 +13,7 @@ import { SearchService, Query } from '../../shared/model/search.service';
 export class SearchComponent implements OnInit, OnDestroy {
 
 	queryString = '';
-	origin = 'vanilla';
+	origin = 'technic';
 	unfilteredResults: Pack[] = [];
 	results: Pack[] = [];
 	tagCount: { [tag: string]: number } = {};

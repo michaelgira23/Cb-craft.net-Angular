@@ -1,3 +1,26 @@
-<p>
-  create-server works!
-</p>
+<div class="container">
+	<h1 class="mat-display-3">Create a Server</h1>
+	<div class="favorites">
+		<md-card *ngFor="let favorite of favorites" class="favorite">
+			<md-card-header>
+				<md-card-title>
+					{{ favorite.name }}
+				</md-card-title>
+			</md-card-header>
+			<div class="image-container">
+				<img class="background" [src]="favorite.background">
+				<div *ngIf="favorite.logo" class="logo" [style.background-image]="'url(' + favorite.logo + ')'"></div>
+			</div>
+			<md-card-actions>
+				<a md-raised-button color="accent">
+					<md-icon>create</md-icon>
+					Create Server
+				</a>
+			</md-card-actions>
+		</md-card>
+	</div>
+	<a md-button class="search-more" routerLink="/search">
+		Search for More
+		<md-icon>keyboard_arrow_right</md-icon>
+	</a>
+</div>
