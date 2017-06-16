@@ -10,10 +10,12 @@ import { routing } from './routes';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
+import { AdminComponent } from './pages/admin/admin.component';
+import { ConfigureServerComponent } from './pages/configure-server/configure-server.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { CreateServerComponent } from './pages/create-server/create-server.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SearchComponent } from './pages/search/search.component';
+import { SelectJarComponent } from './pages/select-jar/select-jar.component';
 import { ServerControlComponent } from './pages/server-control/server-control.component';
 import { ServerListComponent } from './pages/server-list/server-list.component';
 
@@ -26,10 +28,12 @@ import { SocketService } from './shared/model/socket.service';
 	declarations: [
 		AppComponent,
 		NavbarComponent,
+		AdminComponent,
+		ConfigureServerComponent,
 		DashboardComponent,
-		CreateServerComponent,
 		LoginComponent,
 		SearchComponent,
+		SelectJarComponent,
 		ServerControlComponent,
 		ServerListComponent
 	],

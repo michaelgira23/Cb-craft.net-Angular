@@ -26,10 +26,10 @@
 					<md-chip-list md-line>
 						<md-chip *ngFor="let tag of result.tags" [color]="tagColorMap[tag] || tagColorMap.default">{{ tag }}</md-chip>
 					</md-chip-list>
-					<button md-raised-button color="accent" (click)="download(result.origin, result.id)">
+					<a md-raised-button color="accent" [routerLink]="['/create', result.origin, result.id]">
 						<md-icon>create</md-icon>
 						Create Server
-					</button>
+					</a>
 				</md-list-item>
 			</ng-container>
 		</md-list>

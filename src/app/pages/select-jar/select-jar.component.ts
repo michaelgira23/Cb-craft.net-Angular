@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'app-create-server',
-	templateUrl: './create-server.component.html',
-	styleUrls: ['./create-server.component.scss']
+	selector: 'app-select-jar',
+	templateUrl: './select-jar.component.html',
+	styleUrls: ['./select-jar.component.scss']
 })
-export class CreateServerComponent implements OnInit {
+export class SelectJarComponent implements OnInit {
 
 	favorites: Favorite[] = [
 		{

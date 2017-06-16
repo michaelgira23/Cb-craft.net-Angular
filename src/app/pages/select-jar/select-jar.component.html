@@ -12,7 +12,7 @@
 				<div *ngIf="favorite.logo" class="logo" [style.background-image]="'url(' + favorite.logo + ')'"></div>
 			</div>
 			<md-card-actions>
-				<a md-raised-button color="accent">
+				<a md-raised-button color="accent" [routerLink]="['/create', favorite.origin, favorite.id]">
 					<md-icon>create</md-icon>
 					Create Server
 				</a>
