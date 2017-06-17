@@ -13,6 +13,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { ConfigureServerComponent } from './pages/configure-server/configure-server.component';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
+import { CreateUserDialogComponent } from './pages/create-user/create-user-dialog/create-user-dialog.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SearchComponent } from './pages/search/search.component';
@@ -33,12 +34,16 @@ import { SocketService } from './shared/model/socket.service';
 		AdminComponent,
 		ConfigureServerComponent,
 		CreateUserComponent,
+		CreateUserDialogComponent,
 		DashboardComponent,
 		LoginComponent,
 		SearchComponent,
 		SelectJarComponent,
 		ServerControlComponent,
 		ServerListComponent
+	],
+	entryComponents: [
+		CreateUserDialogComponent
 	],
 	imports: [
 		BrowserModule,

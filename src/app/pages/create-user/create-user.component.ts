@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
-import { AdminService } from '../../shared/model/admin.service';
+import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
+
+import { AdminService, CreatedUser } from '../../shared/model/admin.service';
 
 @Component({
 	selector: 'app-create-user',
 	templateUrl: './create-user.component.html',
 	styleUrls: ['./create-user.component.scss']
 })
-export class CreateUserComponent implements OnInit {
+export class CreateUserComponent implements OnInit, OnDestroy {
 
 	availableScopes = [
 		'admin',
@@ -22,12 +25,19 @@ export class CreateUserComponent implements OnInit {
 	error = null;
 	createUserForm: FormGroup;
 
-	constructor(private fb: FormBuilder, private route: ActivatedRoute, private adminService: AdminService) { }
+	dialogRef: MdDialogRef<CreateUserDialogComponent>;
+
+	constructor(
+		private fb: FormBuilder,
+		private route: ActivatedRoute,
+		private router: Router,
+		private dialog: MdDialog,
+		private adminService: AdminService
+	) { }
 
 	ngOnInit() {
 		this.route.queryParams.subscribe(
 			params => {
-				console.log('Initial admin?', !!params.initialAdmin);
 				this.initialAdmin = !!params.initialAdmin;
 			}
 		);
@@ -46,6 +56,10 @@ export class CreateUserComponent implements OnInit {
 		});
 	}
 
+	ngOnDestroy() {
+		this.closeModal();
+	}
+
 	createUser() {
 		this.submitting = true;
 
@@ -60,20 +74,39 @@ export class CreateUserComponent implements OnInit {
 		}
 		user.scopes = scopes;
 
-		console.log('Create user!', user, this.createUserForm.value);
-
 		this.adminService.createUser(user)
 			.subscribe(
-				user => {
-					console.log('Successfully created user!', user);
+				createdUser => {
 					this.submitting = false;
+
+					if (this.initialAdmin) {
+						this.router.navigate(['/login']);
+					} else {
+						this.openModal(createdUser);
+					}
 				},
 				err => {
 					this.error = err;
-					console.log('Error creating user!', err);
 					this.submitting = false;
 				}
 			);
+	}
+
+	openModal(user: CreatedUser) {
+		if (!this.dialogRef) {
+			this.dialogRef = this.dialog.open(CreateUserDialogComponent);
+			this.dialogRef.componentInstance.user = user;
+		}
+	}
+
+	closeModal() {
+		if (this.dialogRef) {
+			this.dialogRef.close();
+		}
+	}
+
+	openTestModal() {
+		this.openModal({ ign: 'asdf', name: 'asdf', password: '77326' });
 	}
 
 }

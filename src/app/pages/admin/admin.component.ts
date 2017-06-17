@@ -16,7 +16,6 @@ export class AdminComponent implements OnInit {
 		this.adminService.canCreateAdmin()
 			.subscribe(
 				createInitialAdmin => {
-					console.log('Able to create initial admin?', createInitialAdmin);
 					if (createInitialAdmin) {
 						this.router.navigate(['/create-user'], { queryParams: { initialAdmin: true } });
 					}

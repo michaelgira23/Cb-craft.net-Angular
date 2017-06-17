@@ -1,0 +1,24 @@
+<h1 class="mat-display-1">User Created!</h1>
+
+<div class="ign">
+	<h3>IGN</h3>
+	{{ user.ign }}
+</div>
+
+<div class="password">
+	<h3>Temporary Password</h3>
+	<md-input-container>
+		<input mdInput [value]="user.password">
+	</md-input-container>
+	<button #passwordCopy md-button>
+		<md-icon>content_copy</md-icon>
+		Copy
+	</button>
+</div>
+
+<div class="back">
+	<a md-button routerLink="/admin">
+		<md-icon>keyboard_arrow_left</md-icon>
+		Back to Admin Panel
+	</a>
+</div>

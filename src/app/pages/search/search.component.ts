@@ -51,7 +51,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 			)
 			.subscribe(
 				results => {
-					console.log('Search Results', results);
 					this.unfilteredResults = results;
 					this.updateFilterTags();
 				}
@@ -70,13 +69,6 @@ export class SearchComponent implements OnInit, OnDestroy {
 			}
 		});
 
-		// Get download status
-		this.downloadService.currentDownloads
-			.subscribe(
-				downloads => {
-					// console.log('Downloads change', downloads);
-				}
-			);
 	}
 
 	ngOnDestroy() {

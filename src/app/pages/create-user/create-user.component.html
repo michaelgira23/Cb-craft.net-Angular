@@ -2,6 +2,7 @@
 	<md-card>
 		<md-card-content>
 			<h1 class="mat-display-1">{{ initialAdmin ? 'Create Initial Admin' : 'Create User' }}</h1>
+			<button md-raised-button color="accent" (click)="openTestModal()">Test Modal</button>
 			<form id="create-user-form" [formGroup]="createUserForm" (submit)="createUser()" novalidate>
 				<md-input-container>
 					<input mdInput placeholder="Username" formControlName="ign">
