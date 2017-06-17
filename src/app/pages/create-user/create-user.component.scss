@@ -1,4 +1,4 @@
-.login-container {
+.create-user-container {
 	margin-top: 2.5rem;
 	margin-bottom: 6rem;
 
@@ -12,10 +12,19 @@ md-card {
 	margin: 0 auto;
 }
 
+h1 {
+	margin: 0;
+	font-weight: 100;
+}
+
 md-input-container {
 	width: 100%;
 
 	&:not(:last-child) {
 		margin-bottom: 2rem;
 	}
+}
+
+.scopes md-checkbox {
+	display: block;
 }

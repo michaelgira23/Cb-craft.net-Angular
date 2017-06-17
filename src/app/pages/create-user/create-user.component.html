@@ -1,0 +1,43 @@
+<div class="create-user-container">
+	<md-card>
+		<md-card-content>
+			<h1 class="mat-display-1">{{ initialAdmin ? 'Create Initial Admin' : 'Create User' }}</h1>
+			<form id="create-user-form" [formGroup]="createUserForm" (submit)="createUser()" novalidate>
+				<md-input-container>
+					<input mdInput placeholder="Username" formControlName="ign">
+					<md-hint>
+						In-game Minecraft username
+					</md-hint>
+				</md-input-container>
+				<md-input-container>
+					<input mdInput placeholder="Name" formControlName="name">
+					<md-hint>
+						Real-life name
+					</md-hint>
+				</md-input-container>
+				<md-input-container *ngIf="initialAdmin">
+					<input mdInput placeholder="Password" type="password" formControlName="password" required>
+				</md-input-container>
+				<h3>Scopes</h3>
+				<div class="scopes">
+					<md-checkbox *ngFor="let scopeControl of createUserForm.controls.scopes.controls; let i = index"
+						[formControl]="scopeControl"
+						[disabled]="i === 0 && initialAdmin">
+						{{ availableScopes[i] }}
+					</md-checkbox>
+				</div>
+				<md-error *ngIf="error">{{ error }}</md-error>
+			</form>
+		</md-card-content>
+		<md-card-actions>
+			<button
+				md-button
+				md-raised-button
+				color="primary"
+				form="create-user-form"
+				[disabled]="!createUserForm.valid || submitting">
+				Create User
+			</button>
+		</md-card-actions>
+	</md-card>
+</div>

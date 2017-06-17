@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminComponent } from './pages/admin/admin.component';
 import { ConfigureServerComponent } from './pages/configure-server/configure-server.component';
+import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SearchComponent } from './pages/search/search.component';
@@ -27,6 +28,10 @@ const appRoutes: Routes = [
 	{
 		path: 'admin',
 		component: AdminComponent
+	},
+	{
+		path: 'create-user',
+		component: CreateUserComponent
 	},
 	{
 		path: 'servers',
