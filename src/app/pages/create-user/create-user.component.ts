@@ -105,8 +105,4 @@ export class CreateUserComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	openTestModal() {
-		this.openModal({ ign: 'asdf', name: 'asdf', password: '77326' });
-	}
-
 }

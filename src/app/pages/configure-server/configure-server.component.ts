@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigureServerComponent implements OnInit {
 
+	// Allowed memory options (in GB)
+	memoryAmounts = [ 1, 2, 3, 4 ];
+
 	constructor() { }
 
 	ngOnInit() {
